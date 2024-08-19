@@ -1,6 +1,7 @@
 import streamlit as st
 from streamlit_gsheets import GSheetsConnection
 from openai import OpenAI
+import pandas as pd
 
 # Create a connection object.
 conn = st.connection("gsheets", type=GSheetsConnection)
