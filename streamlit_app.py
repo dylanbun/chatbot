@@ -14,7 +14,7 @@ st.write(
 # Create a connection object.
 conn = st.connection("gsheets", type=GSheetsConnection)
 
-df = conn.read()
+df = conn.read(spreadsheet="https://docs.google.com/spreadsheets/d/1jg5C17HAnQpx_f4TVpk49ItC5A_mm7YQbn4VPv_3mOA/edit?gid=0#gid=0")
 
 # Print results.
 for row in df.itertuples():
