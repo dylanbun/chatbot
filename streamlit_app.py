@@ -5,7 +5,7 @@ import pandas as pd
 
 # Show title and description.
 st.title("💬 Chatbot")
-st.write(st.secrets['connections'])
+st.write(st.secrets['connections.gsheets'])
 
 # Create a connection object.
 conn = st.connection("gsheets", type=GSheetsConnection)
