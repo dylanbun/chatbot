@@ -5,12 +5,21 @@ import pandas as pd
 
 # Show title and description.
 st.title("💬 Chatbot")
-st.write(st.secrets['connections'])
+st.write(st.secrets['connections']['gsheet'])
+
+sheet_data = st.secrets['connections']['gsheet']
+
+st.write(sheet_data['spreadsheet'])
+
+# this works for a public spreadsheet, need to figure out a private one...
+# url = "https://docs.google.com/spreadsheets/d/15yAVRRcsQC8AAzOME77vrz2vp-XpW-HmD7s3JCG-XRI/edit?usp=sharing"
+
+url="https://docs.google.com/spreadsheets/d/1jg5C17HAnQpx_f4TVpk49ItC5A_mm7YQbn4VPv_3mOA/edit?usp=sharing"
 
 # Create a connection object.
 conn = st.connection("gsheets", type=GSheetsConnection)
 
-df = conn.read()
+df = conn.read(spreadsheet=sheet_data['spreadsheet'])
 
 # Print results.
 for row in df.itertuples():
@@ -32,7 +41,7 @@ if not openai_api_key:
 else:
 
     # Create an OpenAI client.
-    client = OpenAI(api_key=openai_api_key)
+    client = OpenAI(api_key=st.secrets["openai_api_key"]["key"])
 
     # Create a session state variable to store the chat messages. This ensures that the
     # messages persist across reruns.
